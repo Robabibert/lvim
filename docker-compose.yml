@@ -1,0 +1,19 @@
+
+version: "3.8"
+
+services:
+  development:
+    build: 
+      context: ./
+      target: development
+    cap_add:
+      - "CAP_SYS_PTRACE"
+    ports:
+      - 3000:3000
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      #bind the development files into base
+      - type: bind
+        source: ./../
+        target: /base
